@@ -1,0 +1,375 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  background-color: #f1f2f7;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+}
+
+html {
+  height: 100%;
+}
+
+ol,
+ul,
+dl {
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+section {
+  &.content {
+    margin: 18px 18px 18px 18px;
+    min-height: calc(100vh - 76px);
+  }
+}
+
+.badge-solid-blue {
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.15);
+  border: none;
+  padding: 5px 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: blue;
+}
+
+.badge-solid-pink {
+  color: #fd0dfd;
+  background-color: rgba(253, 13, 253, 0.15);
+  border: none;
+  padding: 5px 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fd0dfd;
+}
+
+.table {
+  tbody {
+    border-top: none !important;
+    tr {
+      td,
+      th {
+        padding: 10px;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+
+        ul {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  thead {
+    tr {
+      th {
+        padding: 0 10px;
+        height: 50px;
+        vertical-align: middle;
+        background-color: #f5f5f5;
+        color: #666;
+        font-weight: 500;
+        border: none;
+      }
+    }
+  }
+}
+
+.table-img {
+  img {
+    border-radius: 5px;
+    background: #fff;
+    position: inherit;
+    height: 35px !important;
+    width: 35px !important;
+  }
+}
+
+.tbl-fav-edit {
+  color: #6777ef;
+  display: inline !important;
+  .feather {
+    height: 20px !important;
+    width: 20px !important;
+  }
+}
+
+.tbl-fav-delete {
+  color: #ff5200;
+  display: inline !important;
+  .feather {
+    height: 20px !important;
+    width: 20px !important;
+  }
+}
+
+.spinner {
+  display: inline-block;
+}
+
+.materialTableHeader {
+  -webkit-box-align: center;
+  align-items: center;
+  border-color: #dae1f3;
+  background-color: #dae1f3;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+
+  .left {
+    flex: 35%;
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .center {
+    flex: 40%;
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  .right {
+    flex: 10%;
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .tbl-export-btn {
+    float: right;
+    margin: 0px 15px;
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-buttons-left {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .tbl-search-box {
+      position: relative;
+      margin-left: 10px;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 10px;
+      padding-left: 10px;
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    input.search-field {
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.54);
+      border-radius: 5px;
+      border: 0;
+      height: 45px;
+      padding: 8px 8px 8px 50px;
+      width: 200px;
+      background: #ffffff;
+      transition: background 0.2s, width 0.2s;
+    }
+  }
+}
+
+mat-cell > span.truncate-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mobile-label {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .mobile-label {
+    width: 100px;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .advance-table .mdc-data-table__header-row {
+    display: none;
+  }
+
+  .advance-table .mdc-data-table__row {
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+    display: grid;
+  }
+  mat-cell:first-of-type,
+  mat-header-cell:first-of-type,
+  mat-footer-cell:first-of-type {
+    padding-left: 10px;
+  }
+  .flex-item-right,
+  .flex-item-left {
+    flex: 100%;
+  }
+  .tbl-col-width-per-5,
+  .tbl-col-width-per-6,
+  .tbl-col-width-per-7,
+  .tbl-col-width-per-8,
+  .tbl-col-width-per-20 {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .materialTableHeader .header-buttons-left input.search-field {
+    width: 140px;
+  }
+}
+
+@media (max-width: 300px) {
+  .materialTableHeader .header-buttons-left input.search-field {
+    width: 100px;
+  }
+}
+
+.mat-mdc-snack-bar-container.snackbar-success .mdc-snackbar__surface {
+  background-color: rgba(24, 206, 15, 0.8);
+  color: #ffffff;
+}
+
+.mat-mdc-snack-bar-container.snackbar-info .mdc-snackbar__surface {
+  background-color: rgba(44, 168, 255, 0.8);
+  color: #ffffff;
+}
+
+.mat-mdc-snack-bar-container.snackbar-danger .mdc-snackbar__surface {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: #ffffff;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+.card {
+  background: #fff;
+  min-height: 50px;
+  box-shadow: none;
+  border: 0;
+  position: relative;
+  margin-bottom: 24px;
+
+  .card-inside-title {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: block;
+    font-size: 15px;
+    color: #000;
+
+    small {
+      color: #999;
+      display: block;
+      font-size: 11px;
+      margin-top: 5px;
+
+      a {
+        color: #777;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .body {
+    font-size: 14px;
+    color: #555;
+    padding: 15px;
+
+    @for $i from 1 through 12 {
+      .col-xs-#{$i},
+      .col-sm-#{$i},
+      .col-md-#{$i},
+      .col-lg-#{$i} {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+.modal {
+  background-color: rgba(238, 238, 238, 0.41);
+  max-height: 100%;
+  width: 100%;
+  .modal-header {
+    border: none;
+    padding: 0px;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+.addContainer {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .form {
+    display: flex;
+    padding-top: 6px;
+  }
+
+  .mat-form-field {
+    flex-grow: 1;
+  }
+  .modalHeader img {
+    border-radius: 50%;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: flex-start;
+  padding: 0px 10px 0px 10px;
+  margin: 10px 10px 0px 10px;
+  .modal-about {
+    padding: 5px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+}
+
+.modal-close-button {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: #161d38;
+  right: 10px;
+  position: absolute !important;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  z-index: 1052 !important;
+}
+
+.m-l-5 {
+  margin-left: 5px;
+}
+
+
+.m-l-10 {
+    margin-left: 10px;
+  }

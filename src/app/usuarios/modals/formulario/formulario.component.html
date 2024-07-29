@@ -1,0 +1,173 @@
+<div class="addContainer">
+  <div class="modalHeader">
+     <div class="editRowModal">
+        <div class="modalHeader clearfix">
+           <img [src]='datosUsuarioFormulario.avatar' alt="avatar">
+           <div class="modal-about">
+              <span class="m-l-10">{{titulo}}</span>
+           </div>
+        </div>
+     </div>
+     <button mat-icon-button (click)="cerrar()" class="modal-close-button" aria-label="Cerrar modal">
+        <mat-icon>close</mat-icon>
+     </button>
+  </div>
+  <div mat-dialog-content>
+     <form class="register-form m-4" [formGroup]="formularioForm" (ngSubmit)="submit()">
+
+     <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre">
+          <mat-icon matSuffix class="material-icons-outlined color-icon p-3">face</mat-icon>
+          @if (formularioForm.get('nombre')?.hasError('required')) {
+          <mat-error>
+             Nombre es requerido
+          </mat-error>
+          }
+          @if (formularioForm.get('nombre')?.hasError('minlength')) {
+          <mat-error>
+            El nombre debe tener al menos 2 caracteres.
+          </mat-error>
+          }
+          @if (formularioForm.get('nombre')?.hasError('maxlength')) {
+          <mat-error>
+            El nombre no puede tener más de 20 caracteres.
+          </mat-error>
+          }
+       </mat-form-field>
+      </div>
+   </div>
+   <div class="row m-t-10">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido">
+        <mat-icon matSuffix class="material-icons-outlined color-icon p-3">face</mat-icon>
+        @if (formularioForm.get('apellido')?.hasError('required')) {
+          <mat-error>
+            Apellido es requerido
+          </mat-error>
+          }
+          @if (formularioForm.get('apellido')?.hasError('minlength')) {
+          <mat-error>
+            El apellido debe tener al menos 2 caracteres.
+          </mat-error>
+          }
+          @if (formularioForm.get('apellido')?.hasError('maxlength')) {
+          <mat-error>
+            El apellido no puede tener más de 20 caracteres.
+          </mat-error>
+          }
+     </mat-form-field>
+    </div>
+ </div>
+     <div class="row m-t-10">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+           <div class="m-b-20">
+              <mat-label class="msr-3">Genero:</mat-label>
+              <mat-radio-group aria-label="Seleccione un genero" formControlName="genero" required>
+                 <mat-radio-button value="male">Hombre</mat-radio-button>
+                 <mat-radio-button value="female">Mujer</mat-radio-button>
+                 @if (formularioForm.get('genero')?.hasError('required')) {
+                 <mat-error>
+                    Genero es requerido
+                 </mat-error>
+                 }
+              </mat-radio-group>
+           </div>
+        </div>
+     </div>
+     <div class="row m-t-10">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+           <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Correo</mat-label>
+              <input matInput formControlName="correo" required>
+              <mat-icon matSuffix class="material-icons-outlined color-icon p-3">email</mat-icon>
+              @if (formularioForm.get('correo')?.hasError('required') || formularioForm.get('correo')?.touched) {
+              <mat-error>
+                 Por favor ingrese un correo valido
+              </mat-error>
+              }
+           </mat-form-field>
+        </div>
+     </div>
+
+     <div class="row m-t-10">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Celular</mat-label>
+          <input matInput formControlName="celular" >
+          <mat-icon matSuffix class="material-icons-outlined color-icon p-3">phone</mat-icon>
+          @if (formularioForm.get('celular')?.hasError('required')) {
+            <mat-error>
+              Celular es requerido
+            </mat-error>
+            }
+            @if (formularioForm.get('celular')?.hasError('minlength')) {
+            <mat-error>
+              El celular debe tener al menos 2 caracteres.
+            </mat-error>
+            }
+            @if (formularioForm.get('celular')?.hasError('maxlength')) {
+            <mat-error>
+              El celular no puede tener más de 15 caracteres.
+            </mat-error>
+            }
+       </mat-form-field>
+      </div>
+   </div>
+     <div class="row m-t-10">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+           <mat-label>Fecha Nacimiento</mat-label>
+           <input matInput [matDatepicker]="picker" formControlName="nacimiento" required>
+           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+           <mat-datepicker #picker></mat-datepicker>
+           @if (formularioForm.get('nacimiento')?.hasError('required')) {
+           <mat-error>
+              Por favor seleccione una fecha de nacimiento
+           </mat-error>
+           }
+        </mat-form-field>
+     </div>
+        <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+           <mat-form-field class="example-full-width " appearance="outline">
+              <mat-label>País</mat-label>
+              <mat-select formControlName="pais" required>
+                 <mat-option *ngFor="let item of listaPaises" [value]="item.name.common" >{{item.name.common}}</mat-option>
+              </mat-select>
+              @if (formularioForm.get('pais')?.hasError('required')) {
+              <mat-error>
+                 País es requerido
+              </mat-error>
+              }
+           </mat-form-field>
+        </div>
+     </div>
+     <div class="row m-t-10">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+           <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Dirección</mat-label>
+              <textarea matInput formControlName="direccion"></textarea>
+              @if (formularioForm.get('direccion')?.hasError('required')) {
+                <mat-error>
+                  Dirección es requerido
+                </mat-error>
+                }
+           </mat-form-field>
+        </div>
+     </div>
+     <div class="row m-t-10">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+           <div class="example-button-row">
+              <button mat-flat-button color="accent" [disabled]="!formularioForm.valid" [mat-dialog-close]="1"
+              (click)="confirmar()">Guardar</button>
+              <button mat-flat-button color="warn" (click)="cerrar()" tabindex="-1">Cancelar</button>
+           </div>
+        </div>
+     </div>
+     </form>
+  </div>
+</div>

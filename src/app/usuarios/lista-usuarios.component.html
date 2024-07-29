@@ -1,0 +1,149 @@
+<section class="content">
+  <div class="container-fluid">
+     <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+           <h2>Listado de Usuarios CRUD</h2>
+           <div class="card">
+              <div class="materialTableHeader">
+                 <div class="left">
+                    <ul class="header-buttons-left ms-0">
+                       <li class="tbl-search-box">
+                          <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                          <input placeholder="Buscar" type="text" #filter class="browser-default search-field"
+                             aria-label="Busqueda">
+                       </li>
+                    </ul>
+                 </div>
+                 <div class="right">
+                    <ul class="tbl-export-btn">
+                       <li class="tbl-header-btn">
+                          <div class="m-l-5" matTooltip="Agregar usuario">
+                             <button mat-mini-fab color="primary" (click)="agregarUsuario()">
+                                <mat-icon>add</mat-icon>
+                             </button>
+                          </div>
+                       </li>
+                       <li class="tbl-header-btn">
+                          <div class="m-l-5" matTooltip="Actualizar">
+                             <button mat-mini-fab color="primary" (click)="recargarDatos()">
+                                <mat-icon>refresh</mat-icon>
+                             </button>
+                          </div>
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="body overflow-auto">
+                 <div class="responsive_table">
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table">
+                       <ng-container matColumnDef="imagen">
+                          <mat-header-cell mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'"> Avatar
+                          </mat-header-cell>
+                          <mat-cell mat-cell *matCellDef="let row" class="table-img tbl-col-width-per-6"> <span
+                             class="mobile-label">Avatar:</span><img [src]="row.avatar" />
+                          </mat-cell>
+                       </ng-container>
+                       <ng-container matColumnDef="nombre">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'tbl-col-width-per-8'">Nombre
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row"
+                          [ngClass]="'tbl-col-width-per-8'">
+                          <span class="mobile-label">Nombre:</span>{{row.nombre}}</mat-cell>
+                       </ng-container>
+                       <ng-container matColumnDef="apellido">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'tbl-col-width-per-8'">Apellido
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row"
+                          [ngClass]="'tbl-col-width-per-8'">
+                          <span class="mobile-label">Apellido:</span>{{row.apellido}}</mat-cell>
+                       </ng-container>
+                       <ng-container matColumnDef="correo">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>
+                          <mat-cell *matCellDef="let row" >
+                             <span class="mobile-label">Correo:</span> {{row.correo}}
+                          </mat-cell>
+                       </ng-container>
+                       <ng-container matColumnDef="genero">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'tbl-col-width-per-6'"> Genero
+                          </mat-header-cell>
+                          <mat-cell mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">
+                          <span class="mobile-label">Genero:</span>
+                          @if (row.genero==='male') {
+                          <div>
+                             <span class="badge badge-solid-blue">
+                             Hombre</span>
+                          </div>
+                          }
+                          @if (row.genero==='female') {
+                          <div>
+                             <span class="badge badge-solid-pink">
+                             Mujer</span>
+                          </div>
+                          }
+                          </mat-cell>
+                       </ng-container>
+                       <ng-container matColumnDef="nacimiento">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de Nacimiento</mat-header-cell>
+                          <mat-cell *matCellDef="let row">
+                             <span class="mobile-label">Fecha de Nacimiento:</span> {{row.nacimiento | date: 'MM/dd/yyyy' }}
+                          </mat-cell>
+                       </ng-container>
+                       <ng-container matColumnDef="celular">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header >Celular</mat-header-cell>
+                          <mat-cell *matCellDef="let row">
+                             <span class="mobile-label">Celular:</span>{{row.celular}}
+                          </mat-cell>
+                       </ng-container>
+                       <ng-container matColumnDef="direccion">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'tbl-col-width-per-20'">Dirección
+                          </mat-header-cell>
+                          <mat-cell *matCellDef="let row" class="column-nowrap"
+                          [ngClass]="'tbl-col-width-per-20'">
+                          <span class="truncate-text"><span class="mobile-label">Dirección:</span>{{row.direccion}}</span>
+                          </mat-cell>
+                       </ng-container>
+                       <ng-container matColumnDef="pais">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'tbl-col-width-per-6'">País</mat-header-cell>
+                          <mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">
+                          <span class="mobile-label">País:</span>{{row.pais}}</mat-cell>
+                       </ng-container>
+                       <!-- actions -->
+                       <ng-container matColumnDef="acciones">
+                          <mat-header-cell class="pr-0" *matHeaderCellDef>Acciones</mat-header-cell>
+                          <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
+                             <button mat-icon-button (click)="$event.stopPropagation()" (click)="editarUsuario(row)"
+                             class="tbl-action-btn">
+                             <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                             </button>
+                             <button mat-icon-button (click)="$event.stopPropagation()" (click)="eliminarUsuario(row)"
+                             class="tbl-action-btn">
+                             <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                             </button>
+                          </mat-cell>
+                       </ng-container>
+                       <mat-header-row *matHeaderRowDef="columnasTabla"></mat-header-row>
+                       <mat-row *matRowDef="let row; columns: columnasTabla;"
+                          matRipple>
+                       </mat-row>
+                    </table>
+                    @if (baseDatos?.loading) {
+                    <div class="tbl-spinner">
+                       <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                       </mat-progress-spinner>
+                    </div>
+                    }
+                    @if (!baseDatos?.loading) {
+                    <div class="no-results" [style.display]="dataSource.renderizarDatos.length === 0 ? '' : 'none'">
+                       No hay registros de usuarios
+                    </div>
+                    }
+                    <mat-paginator #paginator [length]="dataSource.datosFiltrados.length" [pageIndex]="0" [pageSize]="10"
+                    [pageSizeOptions]="[5, 10, 25, 100]">
+                    </mat-paginator>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
